@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>取消请求</title>
+ 
+</head>
+<body>
+  <button>点击发送</button>
+  
+ 
+
+  <script>
+    const btns =document.querySelectorAll('button');
+  let x =null;
+    //标识变量
+    let isSending =false;
+     btns[0].onclick =function(){
+       if(isSending) x.abort();
+      //1.创建对象
+       x = new XMLHttpRequest();
+       isSending =true;
+      //超时设置 2s
+    
+     //超时回调
+    
+      //2.初始化 设置请求方法和url
+      x.open('GET','http://127.0.0.1:8000/delay');
+
+      //请求头
+   /*   xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded'); */
+
+      //3.发送
+      x.send();
+      x.onreadystatechange= function(){
+        if(x.readyState===4){
+          isSending=false;
+        }
+      }
+     }
+      btns[1].onclick =function(){
+        x.abort();
+      }
+     //4.事件绑定 
+     
+  </script>
+</body>
+</html>
